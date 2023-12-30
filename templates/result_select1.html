@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                /* Reset some default styles */
+        body, h1, h2, h3, p, form {
+            margin: 0;
+            padding: 0;
+        }
+        .p {
+            padding-left: 350px;
+            text-align: center;
+            color: #113946;
+            font-family: "Inter-SemiBold Italic", Helvetica;
+            padding-right: 350px;
+            margin-bottom: 50px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFF2D8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        /* Style for the result section */
+        #result {
+            padding-bottom: 50px;
+        }
+
+        .title-box {
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .sec-title {
+            color: #113946;
+            font-size: 40px;
+            font-family: Inter;
+            font-style: italic;
+            font-weight: 600;
+            word-wrap: break-word;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 250px;
+            margin-right: 250px;
+            margin-top: 30px;
+            object-fit: cover;
+            border-radius: 10px;
+            background-image: url(static/2.jpg);
+            padding: 20px;
+
+        }
+
+        .col-lg-8,
+        .col-lg-4 {
+            flex: 1;
+        }
+
+        .inner-content {
+            margin-bottom: 30px;
+        }
+
+        .contact-form-area p {
+            margin: unset;
+            padding: none;
+            color: black;
+            text-transform: capitalize;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .contact-form-area p:last-child {
+            font-size: medium;
+        }
+
+        
+        .sidebar-content {
+            text-align: center;
+        }
+
+        .sidebar-content img {
+            height: 300px;
+            width: 300px;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .col-lg-8,
+            .col-lg-4 {
+                width: 100%;
+            }
+        }
+        u {
+            text-decoration: underline;
+        }
+        #accuracy-bar {
+            width: 100%;
+            height: 20px;
+        }
+        .overlap-group {
+            width: 90%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 10px;
+            background-image: url(static/2.jpg);
+        }
+    </style>
+</head>
+<body>
+    <section class="contact-section" id="result" style="padding-bottom: 50px;">
+        <div class="container">
+            <div class="title-box centred" style="padding-top: 50px; ">
+                <div class="sec-title">PREDICTION RESULT</div>
+            </div>
+            <div class="container" >
+                <div class="title-box centred">
+                    <p class="p">
+                        This Model Was Created To Classify Images Into Rock, Paper, Or Scissor Categories. The Model Itself Uses The
+                        Restnet101 Method
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-sm-12 content-column">
+                    <div class="inner-content">
+                        <div class="contact-form-area">
+                            <p style="margin: unset; padding: none; color: #113946; text-transform: capitalize; font-size: medium; font-weight: bold; text-align: center; margin-bottom: 10px;"> Predicted Label is: {{ labels[pred] }}</p>
+                            <br>Prediction Time : {{ (run_time) }} second </br>
+                            <!-- Assuming you have a variable `accuracy` that holds the accuracy value -->
+                            Accuracy: {{ (probs|max) }}%
+                            <input type="hidden" id="accuracy" value="{{ accuracy }}">
+                            <progress value="{{ (probs|max) }}" max="100" id="accuracy-bar"></progress>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 sidebar-column">
+                    <div class="sidebar-content">
+                        <img src="{{ url_for('static', filename=img) }}" alt="" class="img-fluid" style="height:300px; width:300px; border-radius: 20px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

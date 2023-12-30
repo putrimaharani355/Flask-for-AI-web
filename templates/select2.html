@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text-wrapper {
+            text-align: center;
+            font-family: "Inter-SemiBold Italic", Helvetica;
+            font-weight: 600;
+            font-style: italic;
+            color: #113946;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .p {
+            padding-left: 350px;
+            text-align: center;
+            color: #113946;
+            font-family: "Inter-SemiBold Italic", Helvetica;
+            padding-right: 350px;
+            margin-bottom: 50px;
+        }
+        .wrap-input100 {
+            position: relative;
+            width: 25%;
+        }
+
+        .input100 {
+            font-size: 16px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            color: white;
+            background-color: #113946;
+        }
+
+        .focus-input100::before {
+            left: 10px;
+            top: -7px;
+        }
+
+        .symbol-input100 {
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            color: #999;
+        }
+
+        .container-login100-form-btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .login100-form-btn{
+            margin-top: 10px;
+            align-items: center;
+            background-color: #113946;
+            border-radius: 10px;
+            width: 150px;
+            height: 30px;
+            color: #EAD7BB;
+        }
+        .image {
+            display: flex;
+            justify-content: center;
+        }
+        .image .rock {
+            width: 300px;
+            height: 300px;
+        }
+
+        body{
+            background-color: #FFF2D8;
+        }
+        @media screen and (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+
+            #image-preview {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p class="text-wrapper">Upload an Image to Make a Prediction</p>
+        <p class="p">
+            This Model Was Created To Classify Images Into Rock, Paper, Or Scissor Categories. The Model Itself Uses The
+            Restnet101 Method
+        </p>
+    </div>
+    <form class="login100-form validate-form" action="/predict" method=post enctype=multipart/form-data>
+        <div class="container-login100-form-btn">
+            <div class="wrap-input100 validate-input" data-validate="Image file is required" id="input">
+                <input class="input100" id="image-source" name="file" onchange="previewImage();" type="file"
+                    alt="Input Image" accept="image/jpeg,image/jpg,image/png">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-file" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+        <div class="container-login100-form-btn">
+            <button class="login100-form-btn" type="submit">
+                Execute
+            </button>
+        </div>
+    </form> 
+    <div class="image"><img class="rock" src="static\rock01-000-removebg-preview (1).png" /></div>
+</body>
+</html>
